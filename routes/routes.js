@@ -24,8 +24,6 @@ router.post("/profile/update", authenticateToken, (req, res) => {
   userController.updateProfile(req, res);
 });
 
-// Charity Routes
-// Charity Routes
 router.get("/charities", (req, res) => {
   charityController.getAllCharities(req, res);
 });
@@ -78,15 +76,11 @@ router.post("/donate", authenticateToken, (req, res) => {
   donationController.processDonation(req, res);
 });
 
-router.post("/donate/verify", authenticateToken, (req, res) => {
-  donationController.verifyDonation(req, res);
+router.get("/user/profile", authenticateToken, (req,res)=>{
+  userController.getProfile(req,res);
 });
-
-// Donation History
-router.get("/history", authenticateToken, (req, res) => {
-  donationController.getDonationHistory(req, res);
+router.put("/user/profile", authenticateToken, (req,res)=>{
+  userController.updateProfile(req,res);
 });
-
-
 
 module.exports = router;

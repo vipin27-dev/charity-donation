@@ -45,7 +45,9 @@ app.get('/history', (req, res) => {
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'admin.html'));
 });
-
+app.get('/profile',(req,res)=>{
+  res.sendFile(path.join(__dirname, "views", "profile.html"));
+})
 // Synchronize the database and start the server
 sequelize
   .sync({ alter: true })

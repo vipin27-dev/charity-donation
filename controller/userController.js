@@ -4,7 +4,7 @@ const User = require('../models/User');
 exports.getProfile = async (req, res) => {
   try {
     const user = await User.findByPk(req.userId, {
-      attributes: ['name', 'email'] // Select only the required fields
+      attributes: ['name', 'email', 'phno'] // Include 'phno' to fetch phone number
     });
 
     if (!user) {
@@ -20,7 +20,7 @@ exports.getProfile = async (req, res) => {
 
 // Update User Profile
 exports.updateProfile = async (req, res) => {
-  const { name, email } = req.body;
+  const { name, email, phno } = req.body;
 
   try {
     const user = await User.findByPk(req.userId);
@@ -39,6 +39,7 @@ exports.updateProfile = async (req, res) => {
 
     user.name = name || user.name;
     user.email = email || user.email;
+    user.phno = phno || user.phno;
 
     await user.save();
 
