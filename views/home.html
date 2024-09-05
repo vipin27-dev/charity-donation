@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Charity Platform</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Welcome to Our Charity Platform</h1>
+        <p>Your contributions make a difference. Join us in making the world a better place.</p>
+
+        <!-- Align Buttons in One Row -->
+        <div class="row mt-4">
+            <div class="col-md-4 mb-3">
+                <a href="/create-charity" class="btn btn-success w-100">Create a Charity</a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="/admin" class="btn btn-secondary w-100">Admin Dashboard</a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="/donate" class="btn btn-primary w-100">Make a Donation</a>
+            </div>
+        </div>
+        <h2 class="mt-5">Approved Charities</h2>
+        <ul id="approved-charities" class="list-group">
+            <!-- List of approved charities will be populated here -->
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
+    <script src="/js/home.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Charity</title>
+    <link rel="stylesheet" href="../css/charity.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Create a New Charity</h2>
+        <form id="create-charity-form">
+            <div class="mb-3">
+                <label for="name" class="form-label">Charity Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter charity name" required>
+            </div>
+            <div class="mb-3">
+                <label for="mission" class="form-label">Mission</label>
+                <textarea class="form-control" id="mission" rows="3" placeholder="Enter mission statement"
+                    required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="goals" class="form-label">Goals</label>
+                <textarea class="form-control" id="goals" rows="3" placeholder="Enter goals (optional)"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Charity</button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
+    <script src="/js/charity.js"></script>
+</body>
+
+</html>
