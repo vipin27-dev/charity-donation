@@ -36,24 +36,18 @@ router.post("/charity/register", authenticateToken, (req, res) => {
   charityController.registerCharity(req, res);
 });
 
-
 // Admin Routes
 router.get("/admin", authenticateToken, (req, res) => {
-  adminController.getAdminDashboard(req, res); // Use getAdminDashboard to render dashboard
+  adminController.getAdminDashboard(req, res);
 });
 
-// Route to fetch all users (if needed separately)
 router.get("/admin/users", authenticateToken, (req, res) => {
   adminController.getAllUsers(req, res);
 });
 
-// Route to fetch pending charities (if needed separately)
 router.get("/admin/charities", authenticateToken, (req, res) => {
   adminController.getPendingCharities(req, res);
 });
-
-
-
 // Route to approve a charity
 router.post("/admin/charity/approve", authenticateToken, (req, res) => {
   adminController.approveCharity(req, res);
@@ -65,8 +59,6 @@ router.delete("/admin/charities/:id", authenticateToken, (req, res) => {
 router.get("/charities/approved", authenticateToken, (req, res) => {
   adminController.getApprovedCharities(req, res);
 });
-
-
 // Donation Routes
 router.get("/donate", authenticateToken, (req, res) => {
   donationController.getDonation(req, res);
@@ -76,11 +68,15 @@ router.post("/donate", authenticateToken, (req, res) => {
   donationController.processDonation(req, res);
 });
 
-router.get("/user/profile", authenticateToken, (req,res)=>{
-  userController.getProfile(req,res);
+router.get("/donations/history", authenticateToken, (req, res) => {
+  donationController.getDonationHistory(req, res);
 });
-router.put("/user/profile", authenticateToken, (req,res)=>{
-  userController.updateProfile(req,res);
+
+router.get("/user/profile", authenticateToken, (req, res) => {
+  userController.getProfile(req, res);
+});
+router.put("/user/profile", authenticateToken, (req, res) => {
+  userController.updateProfile(req, res);
 });
 
 module.exports = router;

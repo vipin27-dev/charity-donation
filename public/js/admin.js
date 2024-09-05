@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const token = localStorage.getItem("token"); // Assuming the token is stored in localStorage
-
-    // Fetch users and charities in parallel
+    const token = localStorage.getItem("token");
     const [usersResponse, charitiesResponse] = await Promise.all([
       axios.get("/api/admin/users", {
         headers: { Authorization: `Bearer ${token}` },
@@ -11,11 +9,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         headers: { Authorization: `Bearer ${token}` },
       }),
     ]);
-
     // Process users data
     if (usersResponse.status === 200) {
       const userList = document.getElementById("user-list");
-      const users = usersResponse.data.users || []; // Default to empty array if data is missing
+      const users = usersResponse.data.users || [];
       users.forEach((user) => {
         const li = document.createElement("li");
         li.textContent = `${user.name} (${user.email})`;
@@ -26,19 +23,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       alert("Failed to load users.");
     }
 
-    // Process charities data
     if (charitiesResponse.status === 200) {
       const charityList = document.getElementById("charity-list");
-      const charities = charitiesResponse.data.charities || []; // Default to empty array if data is missing
+      const charities = charitiesResponse.data.charities || [];
       charities.forEach((charity) => {
         const li = document.createElement("li");
         li.textContent = `${charity.name} - ${charity.status}`;
-
         // Create approve button
         const approveButton = document.createElement("button");
         approveButton.textContent = "Approve";
         approveButton.onclick = () => approveCharity(charity.id);
-
         // Create decline button
         const declineButton = document.createElement("button");
         declineButton.textContent = "Decline";
@@ -70,7 +64,7 @@ async function approveCharity(charityId) {
     );
     if (response.status === 200) {
       alert("Charity approved successfully!");
-      window.location.reload(); // Reload the page to see changes
+      window.location.reload();
     } else {
       console.error("Failed to approve charity:", response.statusText);
       alert("Failed to approve charity.");
@@ -80,17 +74,16 @@ async function approveCharity(charityId) {
     alert("An error occurred while approving the charity.");
   }
 }
-
 // Function to decline a charity
 async function declineCharity(charityId) {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.delete(`/api/admin/charities/${charityId}`, { // Ensure this matches the server route
+    const response = await axios.delete(`/api/admin/charities/${charityId}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (response.status === 200) {
       alert("Charity declined successfully!");
-      window.location.reload(); // Reload the page to see changes
+      window.location.reload();
     } else {
       console.error("Failed to decline charity:", response.statusText);
       alert("Failed to decline charity.");

@@ -1,47 +1,43 @@
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .navbar-brand {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .container {
-    text-align: center;
-    margin-top: 50px;
+  text-align: center;
+  margin-top: 50px;
 }
 
 h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
 p {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
 }
 
 .btn-primary {
-    font-size: 1.2rem;
-    padding: 10px 20px;
+  font-size: 1.2rem;
+  padding: 10px 20px;
 }
 
 #approved-charities {
-    list-style-type: none; /* Remove default list styling */
-    padding: 0; /* Remove default padding */
+  list-style-type: none;
+  padding: 0;
 }
-
-/* Style for each list item */
 #approved-charities .list-group-item {
-    border: 1px solid #ddd; /* Light border for list items */
-    border-radius: 0.25rem; /* Rounded corners */
-    margin-bottom: 0.5rem; /* Space between items */
-    padding: 1rem; /* Padding inside each item */
-    background-color: #f8f9fa; /* Light background color */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease;
 }
-
-/* Hover effect for list items */
 #approved-charities .list-group-item:hover {
-    background-color: #e9ecef; /* Slightly darker background on hover */
+  background-color: #e9ecef;
 }

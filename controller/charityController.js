@@ -1,10 +1,10 @@
-const Charity = require('../models/Charity');
+const Charity = require("../models/Charity");
 
 exports.registerCharity = async (req, res) => {
   const { name, mission, goals } = req.body;
 
   if (!name || !mission) {
-    return res.status(400).json({ message: 'Name and mission are required' });
+    return res.status(400).json({ message: "Name and mission are required" });
   }
 
   try {
@@ -12,13 +12,13 @@ exports.registerCharity = async (req, res) => {
       name,
       mission,
       goals,
-      adminId: req.userId
+      adminId: req.userId,
     });
 
     res.status(201).json(charity);
   } catch (error) {
     console.error("Register charity error:", error.message);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
@@ -29,13 +29,13 @@ exports.getCharityProfile = async (req, res) => {
     const charity = await Charity.findByPk(charityId);
 
     if (!charity) {
-      return res.status(404).json({ message: 'Charity not found' });
+      return res.status(404).json({ message: "Charity not found" });
     }
 
     res.json(charity);
   } catch (error) {
     console.error("Get charity profile error:", error.message);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
@@ -44,18 +44,20 @@ exports.updateCharityProfile = async (req, res) => {
   const { name, mission, goals } = req.body;
 
   if (!name && !mission && !goals) {
-    return res.status(400).json({ message: 'At least one field must be updated' });
+    return res
+      .status(400)
+      .json({ message: "At least one field must be updated" });
   }
 
   try {
     const charity = await Charity.findByPk(charityId);
 
     if (!charity) {
-      return res.status(404).json({ message: 'Charity not found' });
+      return res.status(404).json({ message: "Charity not found" });
     }
 
     if (charity.adminId !== req.userId) {
-      return res.status(403).json({ message: 'Unauthorized' });
+      return res.status(403).json({ message: "Unauthorized" });
     }
 
     charity.name = name || charity.name;
@@ -64,9 +66,9 @@ exports.updateCharityProfile = async (req, res) => {
 
     await charity.save();
 
-    res.json({ message: 'Charity profile updated successfully' });
+    res.json({ message: "Charity profile updated successfully" });
   } catch (error) {
     console.error("Update charity profile error:", error.message);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };

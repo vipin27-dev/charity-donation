@@ -1,21 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
   const donationForm = document.getElementById("donation-form");
 
-  // Get the token from localStorage
   const token = localStorage.getItem("token");
-
-  // Check if the token exists, if not, show an error
   if (!token) {
     console.error("No token found. Please log in.");
     alert("You must log in to make a donation.");
     return;
   }
-
   // Populate charity dropdown
   axios
     .get("/api/charities/approved", {
       headers: {
-        Authorization: `Bearer ${token}`, // Include the token in the request headers
+        Authorization: `Bearer ${token}`,
       },
     })
     .then((response) => {
@@ -42,37 +38,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const amount = document.getElementById("amount").value;
 
     try {
-      // Send donation request to the server
       const response = await axios.post(
         "/api/donate",
         { charityId, amount },
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Include the token in the request headers
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
       if (response.status === 201) {
-        // Set up Razorpay options
         const options = {
-          key: response.data.keyId, // Your Razorpay key ID
-          amount: response.data.amount, // Amount in paise
+          key: response.data.keyId,
+          amount: response.data.amount,
           currency: "INR",
           name: "Charity Platform",
           description: "Donation",
-          image: "/your_logo.png", // Add your logo image
-          order_id: response.data.orderId, // Order ID from server
+          order_id: response.data.orderId,
           handler: () => {
             alert("Donation successful! Thank you for your contribution.");
-            window.location.href = "/"; // Redirect to home page after successful payment
+            window.location.href = "/";
           },
           theme: {
             color: "#3399cc",
           },
         };
-
-        // Initialize Razorpay and open the payment gateway
         const rzp1 = new Razorpay(options);
         rzp1.open();
       }

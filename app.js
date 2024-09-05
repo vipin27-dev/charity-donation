@@ -1,10 +1,10 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const sequelize = require("./util/database");
-require('./models/association');
+require("./models/association");
 
 const userRoutes = require("./routes/routes");
 
@@ -12,7 +12,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, "public"))); 
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api", userRoutes);
 
@@ -25,30 +25,30 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/signup", (req, res) => {
-    res.sendFile(path.join(__dirname, "views", "signup.html"));
+  res.sendFile(path.join(__dirname, "views", "signup.html"));
 });
-app.get("/home",(req,res)=>{
+app.get("/home", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "home.html"));
-})
+});
 app.get("/create-charity", (req, res) => {
-    res.sendFile(path.join(__dirname, "views", "charity.html"));
+  res.sendFile(path.join(__dirname, "views", "charity.html"));
 });
 
-app.get('/donate', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'donate.html'));
+app.get("/donate", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "donate.html"));
 });
 
-app.get('/history', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'history.html'));
+app.get("/history", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "history.html"));
 });
 
-app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'admin.html'));
+app.get("/admin", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "admin.html"));
 });
-app.get('/profile',(req,res)=>{
+app.get("/profile", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "profile.html"));
-})
-// Synchronize the database and start the server
+});
+
 sequelize
   .sync({ alter: true })
   .then(() => {

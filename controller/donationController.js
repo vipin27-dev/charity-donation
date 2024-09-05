@@ -1,21 +1,22 @@
-const Razorpay = require('razorpay');
-const Donation = require('../models/Donation');
-const Charity = require('../models/Charity');
+const Razorpay = require("razorpay");
+const Donation = require("../models/Donation");
+const Charity = require("../models/Charity");
 
 const razorpayInstance = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-// Create a new donation and generate a Razorpay order
 exports.processDonation = async (req, res) => {
   try {
     const { charityId, amount } = req.body;
+    const donation = await Donation.create({
+      charityId,
+      amount,
+      userId: req.userId,
+    });
 
-    // Add logic for processing the donation, like saving to the database
-    const donation = await Donation.create({ charityId, amount, userId: req.userId });
-
-    // Create Razorpay order (for example)
+    // Razorpay order
     const options = {
       amount: amount * 100, // Amount in paise
       currency: "INR",
@@ -43,6 +44,6 @@ exports.getDonationHistory = async (req, res) => {
     res.json(donations);
   } catch (error) {
     console.error("Get donation history error:", error.message);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
